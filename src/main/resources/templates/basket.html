@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Basket</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="">
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
+
+</head>
+
+<body>
+
+<a href="/">Wróć do strony głównej</a>
+<h1>Basket</h1>
+<form method="get" action="/">
+    <button type="submit">strona główna</button>
+</form>
+<form method="get" action="/menu">
+    <button type="submit">Powrót do menu</button>
+</form>
+
+<h1 th:text="${total} + ' zł'"></h1>
+<table class="pizza_table">
+    <thead>
+    <tr>
+        <th>Zdjęcie</th>
+        <th>Nazwa</th>
+        <th>Składniki</th>
+        <th>Cena</th>
+        <th>Ilość</th>
+    </tr>
+    </thead>
+    <div class="basket_menu_item">
+        <tr th:each="pizzaMapElement: ${basketmap}">
+            <td><img th:src="@{${'/Images/' + pizzaMapElement.getKey().img + '.png'}}" alt="Pizza"
+                     class="basket_table_img"></td>
+            <td th:text="${pizzaMapElement.getKey().name}"></td>
+            <td th:text="${pizzaMapElement.getKey().desc}"></td>
+            <td th:text="${pizzaMapElement.getKey().prize} +' zł'"></td>
+            <td th:text="${pizzaMapElement.value}"></td>
+            <td>
+                <form class="removebutton" method="POST" th:action="'/removefrombasket/' + ${pizzaMapElement.getKey().getPizzaId()}">
+                    <button type="submit">Usuń</button>
+                </form>
+            </td>
+        </tr>
+    </div>
+</table>
+
+</body>
+
+</html>

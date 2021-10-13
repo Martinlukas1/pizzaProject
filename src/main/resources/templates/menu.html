@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Menu</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="">
+    <link rel="stylesheet" th:href="@{styles/style.css}">
+
+</head>
+
+<body>
+<div id="navbar">
+    <form method="get" action="/">
+        <button type="submit">strona główna</button>
+    </form>
+
+    <form method="get" action="/basket">
+        <button type="submit">Koszyk</button>
+    </form>
+
+    <form method="get" action="/menu">
+        <button type="submit">Zaloguj</button>
+    </form>
+
+</div>
+
+
+
+<h1>Menu</h1>
+
+<div class="pizza_list" th:each="pizza: ${pizzalist}">
+    <div class="menu_container">
+        <form method="POST" th:action="'/addtobasket/' + ${pizza.pizzaId}">
+            <input type="image" th:src="@{${'/Images/' + pizza.img + '.png'}}" alt="Pizza" class="menu_img">
+        </form>
+        <div class="desc">
+            <!--            <div th:text="${pizza.pizzaId}"></div>-->
+            <br>
+            <div th:text="${pizza.name}"></div>
+            <div th:text="${pizza.desc}"></div>
+            <div th:text="${pizza.prize} + ' zł'"></div>
+            <!--        <form method="POST" th:action="'/addtobasket/' + ${pizza.pizzaId}">-->
+            <!--            <button type="submit">Dodaj do koszyka</button>-->
+            <!--        </form>-->
+        </div>
+    </div>
+    <br>
+</div>
+</body>
+
+</html>

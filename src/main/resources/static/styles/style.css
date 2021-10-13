@@ -1,0 +1,68 @@
+#nawigacja {
+    height: 100px;
+    width: 100vw;
+    border-bottom: 2px solid black;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: wheat;
+}
+
+.menu-link {
+    display: inline-block;
+    width: 150px;
+    padding: 15px;
+}
+
+.menu_container {
+    border: solid black 3px;
+    border-radius: 10px;
+    padding: 20px;
+    content: "";
+    width: 500px;
+    margin: auto;
+}
+
+.menu_img {
+    width: 500px;
+    margin: auto;
+    display: block;
+}
+
+.desc {
+    display: block;
+    text-align: center;
+}
+
+.basket_table_img {
+    width: 150px;
+}
+
+.menu_img:hover {
+    transform: scale(1.05);
+}
+
+td > form:not(.removebutton), th {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+tbody > tr:not(.removebutton):hover {
+    background-color: beige;
+}
+
+.main_links {
+    text-decoration: none;
+    color: blue;
+}
+
+.main_links:hover {
+    text-underline: none;
+    color: inherit;
+}
+
+.main_links:active {
+    background-color: blueviolet;
+}
+
