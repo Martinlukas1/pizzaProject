@@ -39,16 +39,15 @@ public class PizzaService {
 
     public void removePizzaFromBasket(int pizzaId) {
         System.out.println("Remove pizza from basket");
-        int currentValue = getBasketMap().get(findPizzaById(pizzaId));
-        if (currentValue > 0) {
-            currentValue -= 1;
-            getBasketMap().put(findPizzaById(pizzaId), currentValue);
-            basket.setTotalPrize(basket.getTotalPrize() - findPizzaById(pizzaId).getPrize());
-            if (currentValue==0){
-                getBasketMap().remove(findPizzaById(pizzaId));
+        Pizza currentPizza=findPizzaById(pizzaId);
+        if (currentPizza.getAmount() > 0) {
+            currentPizza.setAmount(currentPizza.getAmount()-1);
+            getBasketMap().put(currentPizza,currentPizza.getAmount());
+            basket.setTotalPrize(basket.getTotalPrize() - currentPizza.getPrize());
+            if (currentPizza.getAmount()==0){
+                getBasketMap().remove(currentPizza);
             }
         }
-
     }
 
     public Pizza findPizzaById(int pizzaId) {
