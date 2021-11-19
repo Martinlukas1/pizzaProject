@@ -1,5 +1,7 @@
 package pl.marcinlukasik.pizzaorder.controller;
 
+import pl.marcinlukasik.pizzaorder.model.Pizza;
+
 import java.util.HashMap;
 import java.util.Map;
 

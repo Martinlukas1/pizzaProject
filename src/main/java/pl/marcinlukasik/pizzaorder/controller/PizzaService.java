@@ -1,22 +1,23 @@
 package pl.marcinlukasik.pizzaorder.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.marcinlukasik.pizzaorder.model.Pizza;
+import pl.marcinlukasik.pizzaorder.model.jpa.PizzaRepository;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@RequiredArgsConstructor
 @Service
 public class PizzaService {
     private final List<Pizza> menu = new ArrayList<>();
     private final Basket basket;
+    private final PizzaRepository pizzaRepository;
 
 
-    public PizzaService(Basket basket) {
-        this.basket = basket;
-    }
 
     public List<Pizza> getMenu() {
         return menu;
@@ -24,9 +25,14 @@ public class PizzaService {
 
     @PostConstruct
     public void init() {
-        menu.add(new Pizza("Margherita", "z sosem pomidorowym, oliwą extra virgin, serem grana padano d.o.p, mozzarellą fior di latte i bazylią", 1, "pizza1", 29.00));
-        menu.add(new Pizza("Prosciutto", "z sosem pomidorowym, oliwą extra virgin, serem grana padano d.o.p, mozzarellą fior di latte i bazylią", 2, "pizza2", 31.00));
-        menu.add(new Pizza("Diavola", "z sosem pomidorowym, oliwą extra virgin, serem grana padano d.o.p, mozzarellą fior di latte i bazylią", 3, "pizza3", 33.00));
+//        menu.add(new Pizza("Margherita", "z sosem pomidorowym, oliwą extra virgin, serem grana padano d.o.p, mozzarellą fior di latte i bazylią", 1, "pizza1", 29.00));
+//        menu.add(new Pizza("Prosciutto", "z sosem pomidorowym, oliwą extra virgin, serem grana padano d.o.p, mozzarellą fior di latte i bazylią", 2, "pizza2", 31.00));
+//        menu.add(new Pizza("Diavola", "z sosem pomidorowym, oliwą extra virgin, serem grana padano d.o.p, mozzarellą fior di latte i bazylią", 3, "pizza3", 33.00));
+        Pizza pizza = Pizza.builder()
+                .desc("z sosem pomidorowym, oliwą extra virgin, serem grana padano d.o.p, mozzarellą fior di latte i bazylią")
+                .name("Diavola")
+                .prize(33.00).build();
+        pizzaRepository.saveAndFlush(pizza);
     }
 
     public void addPizzaToBasket(int pizzaId) {
@@ -39,12 +45,12 @@ public class PizzaService {
 
     public void removePizzaFromBasket(int pizzaId) {
         System.out.println("Remove pizza from basket");
-        Pizza currentPizza=findPizzaById(pizzaId);
+        Pizza currentPizza = findPizzaById(pizzaId);
         if (currentPizza.getAmount() > 0) {
-            currentPizza.setAmount(currentPizza.getAmount()-1);
-            getBasketMap().put(currentPizza,currentPizza.getAmount());
+            currentPizza.setAmount(currentPizza.getAmount() - 1);
+            getBasketMap().put(currentPizza, currentPizza.getAmount());
             basket.setTotalPrize(basket.getTotalPrize() - currentPizza.getPrize());
-            if (currentPizza.getAmount()==0){
+            if (currentPizza.getAmount() == 0) {
                 getBasketMap().remove(currentPizza);
             }
         }
@@ -54,7 +60,7 @@ public class PizzaService {
         return menu.stream()
                 .filter(p -> p.getPizzaId() == pizzaId)
                 .findFirst()
-                .orElseGet(() -> new Pizza("not found"));
+                .orElseGet(() -> new Pizza());
     }
 
     public Map<Pizza, Integer> getBasketMap() {

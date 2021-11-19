@@ -36,14 +36,10 @@
             <input type="image" th:src="@{${'/Images/' + pizza.img + '.png'}}" alt="Pizza" class="menu_img">
         </form>
         <div class="desc">
-            <!--            <div th:text="${pizza.pizzaId}"></div>-->
             <br>
             <div th:text="${pizza.name}"></div>
             <div th:text="${pizza.desc}"></div>
             <div th:text="${pizza.prize} + ' zł'"></div>
-            <!--        <form method="POST" th:action="'/addtobasket/' + ${pizza.pizzaId}">-->
-            <!--            <button type="submit">Dodaj do koszyka</button>-->
-            <!--        </form>-->
         </div>
     </div>
     <br>

@@ -1,5 +1,6 @@
 package pl.marcinlukasik.pizzaorder.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,14 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.ArrayList;
 import java.util.List;
 
+@RequiredArgsConstructor
 @Controller
 public class MenuController {
 
-    PizzaService pizzaService;
+    private final PizzaService pizzaService;
 
-    public MenuController(PizzaService pizzaService) {
-        this.pizzaService = pizzaService;
-    }
 
     @GetMapping("/menu")
     public String getMenu(Model model) {

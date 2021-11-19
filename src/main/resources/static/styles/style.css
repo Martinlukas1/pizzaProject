@@ -1,12 +1,86 @@
-#nawigacja {
-    height: 100px;
-    width: 100vw;
-    border-bottom: 2px solid black;
+body {
     margin: 0;
-    position: sticky;
+    background: floralwhite;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 300;
+    padding-top: 250px;
+}
+
+.logo {
+    float: left;
+    width: 100px;
+    border: 2px solid black;
+    border-radius: 20px;
+    transition: 0.4s;
+}
+
+
+
+nav {
+    float: right;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+nav a:hover {
+    color: maroon;
+}
+
+nav a::before{
+    content: '';
+    display: block;
+    height: 5px;
+    background-color: black;
+
+    position: absolute;
     top: 0;
-    left: 0;
-    background-color: wheat;
+    width: 0;
+    transition: all ease-in-out 200ms;
+}
+
+nav a:hover::before{
+    width: 100%;
+}
+nav ul {
+    margin: 0;
+    padding: 20px;
+    list-style: none;
+}
+
+nav li {
+    display: inline-block;
+    margin-left: 90px;
+    padding-top: 40px;
+    position: relative;
+}
+
+#container {
+    /*margin: 0 auto;*/
+    /*transition: 0.4s;*/
+    /*overflow: hidden;*/
+    overflow: hidden;
+    background-color: #f1f1f1;
+    padding: 20px;
+    transition: 0.4s; /* Adds a transition effect when the padding is decreased */
+    position: fixed; /* Sticky/fixed navbar */
+    width: 100%;
+    top: 0; /* At the top */
+    z-index: 50;
+}
+
+header {
+    background: wheat;
+    /*padding-bottom: 10px;*/
+}
+
+header::after {
+    content: ' ';
+    display: table;
+    clear: both;
 }
 
 .menu-link {
@@ -43,14 +117,14 @@
     transform: scale(1.05);
 }
 
-td > form:not(.removebutton), th {
-    border: 1px solid black;
-    border-radius: 5px;
-}
+/*td > form:not(.removebutton), th {*/
+/*    border: 1px solid black;*/
+/*    border-radius: 5px;*/
+/*}*/
 
-tbody > tr:not(.removebutton):hover {
-    background-color: beige;
-}
+/*tbody > tr:not(.removebutton):hover {*/
+/*    background-color: beige;*/
+/*}*/
 
 .main_links {
     text-decoration: none;
@@ -66,3 +140,6 @@ tbody > tr:not(.removebutton):hover {
     background-color: blueviolet;
 }
 
+.info{
+    position: relative;
+}
