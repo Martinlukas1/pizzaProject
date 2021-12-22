@@ -9,24 +9,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Objects;
+
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@NoArgsConstructor
 @Entity
 public class Pizza {
 
 
     private String name;
     private String desc;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pizzaId;
     private String img;
-    private double prize;
-    private int amount;
+    private double price;
 
+    public Pizza(Long pizzaId, String name, String desc, String img, double price) {
+        this.pizzaId=pizzaId;
+        this.name = name;
+        this.desc = desc;
+        this.img = img;
+        this.price = price;
+    }
 
 }

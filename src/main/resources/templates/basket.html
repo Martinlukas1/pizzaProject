@@ -6,49 +6,65 @@
     <title>Basket</title>
     <meta name="description" content="The HTML5 Herald">
     <meta name="author" content="">
-    <link rel="stylesheet" th:href="@{/styles/style.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{styles/style.css}">
 
 </head>
 
 <body>
 
-<a href="/">Wróć do strony głównej</a>
-<h1>Basket</h1>
-<form method="get" action="/">
-    <button type="submit">strona główna</button>
-</form>
-<form method="get" action="/menu">
-    <button type="submit">Powrót do menu</button>
-</form>
+<header>
+    <div id="container">
+        <img src="/Images/logo.png" alt="logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="/menu">Menu</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="/basket">Basket</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
 <h1 th:text="${total} + ' zł'"></h1>
 <table class="pizza_table">
     <thead>
     <tr>
-        <th>Zdjęcie</th>
-        <th>Nazwa</th>
-        <th>Składniki</th>
-        <th>Cena</th>
-        <th>Ilość</th>
+        <th>Photo</th>
+        <th>Name</th>
+        <th>Ingredients</th>
+        <th>Price</th>
+        <th>Amount</th>
     </tr>
     </thead>
     <div class="basket_menu_item">
-        <tr th:each="pizzaMapElement: ${basketmap}">
-            <td><img th:src="@{${'/Images/' + pizzaMapElement.getKey().img + '.png'}}" alt="Pizza"
+        <tr th:each="pizzaMapElement: ${basketmap}" >
+            <td><img th:src="@{${'/Images/' + pizzaMapElement.getKey().getImg()+ '.png'}}" alt="Pizza"
                      class="basket_table_img"></td>
             <td th:text="${pizzaMapElement.getKey().name}"></td>
             <td th:text="${pizzaMapElement.getKey().desc}"></td>
-            <td th:text="${pizzaMapElement.getKey().prize} +' zł'"></td>
-            <td th:text="${pizzaMapElement.value}"></td>
+            <td th:text="${pizzaMapElement.getKey().price} +' zł'"></td>
+            <td th:text="${pizzaMapElement.getValue()}"></td>
             <td>
                 <form class="removebutton" method="POST" th:action="'/removefrombasket/' + ${pizzaMapElement.getKey().getPizzaId()}">
-                    <button type="submit">Usuń</button>
+                    <button type="submit">Delete</button>
                 </form>
             </td>
         </tr>
     </div>
-</table>
 
+</table>
+<form class="row g-3 m-3 " th:action="@{/order}" th:method="Post" th:object="${userForm}">
+    <div class="col-auto">
+        <input type="email" class="form-control" name="email" th:field="*{email}" placeholder="youremail@something.com" >
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Make Order</button>
+    </div>
+</form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
 </html>
