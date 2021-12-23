@@ -6,29 +6,28 @@
     <title>Pizza App</title>
     <meta name="description" content="The HTML5 Herald">
     <meta name="author" content="">
-    <link rel="stylesheet" th:href="@{styles/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/style.css">
 
 </head>
 
 <body>
-<header>
-    <div id="container">
-        <img src="/Images/logo.png" alt="logo" class="logo">
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="/menu">Menu</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="/basket">Basket</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
- <div class="video_section">
-     <video autoplay loop muted>
-         <source src="/video/background_video.mp4" type="video/mp4">
-     </video>
- </div>
+<div class="topnav" id="myTopnav">
+    <img src="/Images/logo.png" alt="logo" class="logo">
+    <a href="/" class="active">Home</a>
+    <a href="#">About</a>
+    <a href="/menu">Menu</a>
+    <a href="#">Contact</a>
+    <a href="/basket">Basket</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+<div class="video_section">
+    <video autoplay loop muted>
+        <source src="/video/background_video.mp4" type="video/mp4">
+    </video>
+</div>
+<script type="text/javascript" src="script.js"></script>
 </body>
 </html>

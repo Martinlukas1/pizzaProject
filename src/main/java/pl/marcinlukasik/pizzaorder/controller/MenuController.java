@@ -16,8 +16,6 @@ public class MenuController {
 
     private final PizzaService pizzaService;
 
-
-
     @GetMapping("/menu")
     public String getMenu(Model model) {
         model.addAttribute("pizzalist", pizzaService.getMenu());
